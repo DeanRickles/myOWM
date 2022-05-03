@@ -48,38 +48,25 @@ def myOWM(lon, lat,APItoken, lang, units,
          # Open a cursor to proform database operations.
         with vConn.cursor() as vCurr:
             
-            ''' checks json values otherwise 0.
-            '''
-            
             #  Wind gust. Metric: meter/sec,
-            try:
-                gust = j['wind']['gust']
-            except:
-                gust = 0
+            try: gust = j['wind']['gust']
+            except: gust = 0
             
             # volume for the last 1 hour, mm
-            try:
-                rain1h = j['rain']['1h']
-            except:
-                rain1h = 0
+            try:    rain1h = j['rain']['1h']
+            except: rain1h = 0
             
             # volume for the last 3 hours, mm
-            try:
-                rain3h = j['rain']['3h']
-            except:
-                rain3h = 0
+            try:    rain3h = j['rain']['3h']
+            except: rain3h = 0
             
             # Snow volume for the last 1 hour, mm
-            try:
-                snow1h = j['snow']['1h']
-            except:
-                snow1h = 0
+            try:    snow1h = j['snow']['1h']
+            except: snow1h = 0
             
             # Snow volume for the last 3 hours, mm
-            try:
-                snow3h = j['snow']['3h']
-            except:
-                snow3h = 0
+            try:    snow3h = j['snow']['3h']
+            except: snow3h = 0
             
             # Generate the insert query.
             insert_table_query = f'''insert into {vServerTbl} (
